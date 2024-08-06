@@ -1,105 +1,84 @@
-import React from 'react';
-import Slider from 'react-slick';
+import React, { useState, useEffect } from 'react';
+import Navo from '../Navbar/Navo';
+import Slide from '../Slideshow/Slide';
+import Footer from '../Footer/Footer';
 
-const Home = () => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1
-  };
+const App = () => {
+
+  const courses = [
+    { id: 1, title: 'HTML & CSS', description: 'Learn the basics of web development with HTML and CSS.' },
+    { id: 2, title: 'JavaScript', description: 'Master JavaScript and build dynamic web applications.' },
+    { id: 3, title: 'React', description: 'Become proficient in React and build modern web applications.' },
+  ];
+
+  const discountedCourses = [
+    { id: 1, title: 'Python for Beginners', originalPrice: '$100', discountedPrice: '$50' },
+    { id: 2, title: 'Advanced JavaScript', originalPrice: '$150', discountedPrice: '$75' },
+    { id: 3, title: 'Full-Stack Development', originalPrice: '$200', discountedPrice: '$100' },
+  ];
 
   return (
     <div>
-      {/* Hero Section */}
-      <section className="bg-blue-500 text-white py-20">
-        <div className="container mx-auto px-6 text-center">
-          <h1 className="text-4xl font-bold">Learn React and Tailwind CSS from Scratch</h1>
-          <p className="mt-4 text-lg">Join our comprehensive course designed for beginners in Thailand.</p>
-          <a href="#" className="mt-6 inline-block bg-white text-blue-500 font-semibold py-2 px-4 rounded">Enroll Now</a>
-        </div>
-      </section>
+  <Navo/>
 
-      {/* Slideshow Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-6">
-          <Slider {...settings}>
-            <div>
-              <img src="https://via.placeholder.com/1200x400?text=Slide+1" alt="Slide 1" className="w-full" />
-            </div>
-            <div>
-              <img src="https://via.placeholder.com/1200x400?text=Slide+2" alt="Slide 2" className="w-full" />
-            </div>
-            <div>
-              <img src="https://via.placeholder.com/1200x400?text=Slide+3" alt="Slide 3" className="w-full" />
-            </div>
-          </Slider>
+      <div className="bg-blue-600 text-white py-20">
+        <div className="container mx-auto text-center">
+          <h1 className="text-4xl font-bold mb-4">Welcome to Coursoo</h1>
+          <p className="text-xl mb-8">Your destination for the best online courses.</p>
+          <a href="#courses" className="bg-white text-blue-600 px-4 py-2 rounded hover:bg-gray-200 transition">Explore Courses</a>
         </div>
-      </section>
+      </div>
 
-      {/* Why Learn Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold">Why Learn React and Tailwind CSS?</h2>
-          <div className="mt-10 flex flex-wrap -mx-4">
-            <div className="w-full md:w-1/3 px-4 py-6">
-              <h3 className="text-xl font-semibold">High Demand Skills</h3>
-              <p className="mt-2 text-gray-600">React and Tailwind CSS are essential in modern web development, making you a valuable asset to any company.</p>
-            </div>
-            <div className="w-full md:w-1/3 px-4 py-6">
-              <h3 className="text-xl font-semibold">Career Opportunities</h3>
-              <p className="mt-2 text-gray-600">Unlock numerous job opportunities and career growth with these in-demand skills.</p>
-            </div>
-            <div className="w-full md:w-1/3 px-4 py-6">
-              <h3 className="text-xl font-semibold">Ease of Learning</h3>
-              <p className="mt-2 text-gray-600">Our course makes learning React and Tailwind CSS easy and accessible for everyone.</p>
+      <div className="container mx-auto mt-8">
+
+   <Slide/>
+
+        <div className="my-8 p-4 bg-gray-100 rounded-lg shadow-md">
+          <h2 className="text-2xl font-bold mb-4">Our Courses</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {courses.map(course => (
+              <div key={course.id} className="bg-white rounded shadow-lg p-4">
+                <h3 className="text-xl font-bold mb-2">{course.title}</h3>
+                <p>{course.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="my-8 p-4 bg-yellow-100 rounded-lg shadow-md">
+          <h2 className="text-2xl font-bold mb-4">Discounted Courses</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {discountedCourses.map(course => (
+              <div key={course.id} className="bg-white rounded shadow-lg p-4">
+                <h3 className="text-xl font-bold mb-2">{course.title}</h3>
+                <p className="line-through text-red-600">{course.originalPrice}</p>
+                <p className="text-green-600 font-bold">{course.discountedPrice}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-green-600 text-white py-20">
+          <div className="container mx-auto text-center">
+            <h2 className="text-3xl font-bold mb-4">Learn Programming Languages</h2>
+            <p className="text-xl mb-8">Start your journey with our comprehensive programming courses.</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {['Python', 'JavaScript', 'Java', 'C#', 'Ruby', 'Go'].map((lang, index) => (
+                <div key={index} className="bg-white text-black rounded-lg shadow-lg p-4">
+                  <div className="text-4xl mb-4">
+                    <i className={`devicon-${lang.toLowerCase()}-plain`}></i>
+                  </div>
+                  <h3 className="text-xl font-bold">{lang}</h3>
+                </div>
+              ))}
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* Course Features Section */}
-      <section className="bg-gray-200 py-20">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold">Course Features</h2>
-          <div className="mt-10 flex flex-wrap -mx-4">
-            <div className="w-full md:w-1/4 px-4 py-6">
-              <h3 className="text-xl font-semibold">Interactive Lessons</h3>
-              <p className="mt-2 text-gray-600">Engage with interactive lessons designed to enhance your learning experience.</p>
-            </div>
-            <div className="w-full md:w-1/4 px-4 py-6">
-              <h3 className="text-xl font-semibold">Expert Instructors</h3>
-              <p className="mt-2 text-gray-600">Learn from industry experts with years of experience.</p>
-            </div>
-            <div className="w-full md:w-1/4 px-4 py-6">
-              <h3 className="text-xl font-semibold">Community Support</h3>
-              <p className="mt-2 text-gray-600">Join our community for support, networking, and collaboration.</p>
-            </div>
-            <div className="w-full md:w-1/4 px-4 py-6">
-              <h3 className="text-xl font-semibold">Flexible Schedule</h3>
-              <p className="mt-2 text-gray-600">Learn at your own pace with our flexible course schedule.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Course Curriculum Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold">Course Curriculum</h2>
-          <div className="mt-10">
-            <h3 className="text-xl font-semibold">Module 1: Introduction to React</h3>
-            <p className="mt-2 text-gray-600">Learn the basics of React, including components, JSX, and state management.</p>
-            <h3 className="mt-6 text-xl font-semibold">Module 2: Getting Started with Tailwind CSS</h3>
-            <p className="mt-2 text-gray-600">Understand how to set up and use Tailwind CSS to style your React applications.</p>
-            <h3 className="mt-6 text-xl font-semibold">Module 3: Building Components with React and Tailwind</h3>
-            <p className="mt-2 text-gray-600">Learn how to create reusable components using React and Tailwind CSS.</p>
-          </div>
-        </div>
-      </section>
+  <Footer/>
     </div>
   );
 };
 
-export default Home;
+export default App;
